@@ -1,17 +1,20 @@
 import express from "express";
-import { customersRouter } from "./router/customers.router";
-import { productsRouter } from "./router/products.router";
-import { ordersRouter } from "./router/orders.router";
+
+import { categoriesRouter } from "./router/categories.router";
+import { recordsRouter } from "./router/records.router";
+import { usersRouter } from "./router/users.router";
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const port = 8000;
 
-app.use("/customers", customersRouter);
-app.use("/products", productsRouter);
-app.use("/orders", ordersRouter);
+app.use("/categories", categoriesRouter);
+app.use("/records", recordsRouter);
+app.use("/users", usersRouter);
 
 app.listen(port, () => {
   console.log(`server started http://localhost:${port}`);
