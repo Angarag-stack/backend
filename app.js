@@ -12,6 +12,10 @@ app.use(cors());
 
 const port = 8000;
 
+app.get("/", (req, res) => {
+  res.send("ok");
+});
+
 app.use("/categories", categoriesRouter);
 app.use("/records", recordsRouter);
 app.use("/users", usersRouter);

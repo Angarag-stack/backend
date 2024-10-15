@@ -1,22 +1,16 @@
 import { sql } from "../../database";
 
-export const addRecord = async () => {
-  const {
-    id,
-    user_id,
-    amount,
-    transaction_type,
-    description,
-    createdat,
-    updatedat,
-    category_id,
-  } = request.body;
+export const addRecord = async (request, response) => {
+  const { user_id, name, amount, transaction_type, description, category_id } =
+    request.body;
+
   try {
-    await sql`INSERT INTO record (id, user_id, price, amount, transaction_type, createdat, updatedat, category_id )
-        VALUES (${id}, ${user_id}, ${amount}, ${transaction_type}, ${description}, ${createdat}, ${updatedat}, ${category_id}`;
+    await sql` INSERT INTO record (user_id, name, amount, transaction_type, description, category_id)
+        VALUES(${user_id}, ${name},  ${amount}, ${transaction_type}, ${description}, ${category_id})`;
 
     response.status(200).json({ record: request.body });
   } catch (error) {
-    response.status(400).json({ message: "aldaa garlaa" });
+    console.log(error);
+    response.status(400).json({ message: error });
   }
 };
